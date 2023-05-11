@@ -14,8 +14,8 @@ CREATE TABLE empresa(
 
 CREATE TABLE accion(
 	ticker varchar(10),
-	valor_actual int,
-	variracion float,	
+	valor_actual varchar(20),
+	variacion float,	
 	volumen int,
 	PRIMARY KEY(ticker)
 );
@@ -25,13 +25,43 @@ CREATE TABLE cuenta(
 	nombre varchar(30),
 	pais varchar(20),
 	fecha_nacimiento date,
-	ciudad varchar(20),
 	telefono int,
 	correo varchar(40),
 	contraseña int,
 	saldo int,
 	divisa varchar(15),
 	PRIMARY KEY(id)
+);
+
+CREATE TABLE tener(
+	id int,
+	ticker varchar(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(id) REFERENCES cuenta(id),
+	FOREIGN KEY(ticker) REFERENCES accion(ticker)
+	
+);
+
+CREATE TABLE movimiento(
+	id int,
+	id_cuenta int,
+	cantidad int,
+	precio int,
+	fehca date,
+	divisa varchar(15),
+	PRIMARY KEY(id),
+	FOREIGN KEY(id_cuenta) REFERENCES cuenta(id)
+	
+);
+
+CREATE TABLE valor_historico(
+	ticker varchar(10),
+	variacion float,
+	valor int,
+	fecha date,
+	PRIMARY KEY(ticker),
+	FOREIGN KEY(ticker) REFERENCES accion(ticker)
+
 );
 
 
