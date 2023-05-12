@@ -68,8 +68,3 @@ CREATE TABLE valor_historico(
 COPY cuenta FROM 'C:\Datos_Cuentas - Hoja 1.csv' delimiter ',' csv header;
 COPY accion FROM 'C:\Datos_Accion - Hoja 1.csv' delimiter ',' csv header;
 COPY empresa FROM 'C:\Datos_Empresa - Hoja 1.csv' delimiter ',' csv header;
-
---Uso de Datos---
-SELECT* FROM cuenta;
-SELECT* FROM accion;
-SELECT* FROM empresa;
