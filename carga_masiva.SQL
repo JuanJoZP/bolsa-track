@@ -25,7 +25,7 @@ CREATE TABLE cuenta(
 	nombre varchar(30),
 	pais varchar(20),
 	fecha_nacimiento date,
-	telefono int,
+	telefono varchar(50),
 	correo varchar(40),
 	contraseña int,
 	saldo int,
@@ -65,9 +65,7 @@ CREATE TABLE valor_historico(
 );
 
 
+COPY cuenta FROM 'C:\Datos_Cuentas - Hoja 1.csv' delimiter ',' csv header;
 
-COPY empresa FROM 'C:\Datos_Empresa - Hoja 1.csv' delimiter '|' csv header;
 
-
----ERROR:  la sintaxis de entrada no es válida para tipo integer: «1,A,Agilent Technologies Inc. Common Stock,United States,39417057005.00,Electrical Products,Industrials,1999»
---CONTEXT:  COPY empresa, línea 2, columna id: «1,A,Agilent Technologies Inc. Common Stock,United States,39417057005.00,Electrical Products,Industri...»---
+SELECT* FROM cuenta;
