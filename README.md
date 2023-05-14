@@ -4,7 +4,11 @@
 
 ## Instalación Rapida
 
-- (de crear la base de datos y las tablas, todavia no)
-- Descargar la carpeta `datos_estaticos` y colocarla en `C:\`
+- Clonar el repositorio `git clone https://github.com/JuanJoZP/bolsa-track`
+- Instalar las librerias requeridas `pip install requirements.txt`
+- Copiar la carpeta `datos_estaticos` y pegarla en `C:\`
+- Crear una base de datos en postgresql que se llame `bolsa-track`
+- Ejecutar `creacion.sql` en la base de datos
 - Ejecutar `carga_masiva.sql` en la base de datos
-- (de conectar al python, todavia no)
+- Ejecutar en consola `python main.py conectar postgres CONTRASEÑA`
+- Ejecutar en consola `python main.py consultar --help`
