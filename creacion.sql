@@ -5,20 +5,41 @@ CREATE TABLE CORREO(
 );
 
 
-CREATE TABLE MOVIMIENTO(
+CREATE TABLE PAIS(
 	id int,
-	cantidad int,
-	precio int,
-	fecha date,
-	divisa varchar(15),
-  ticker_accion int,
-  id_cuenta_origen int,
-  id_cuenta_destino int,
-	primary key(id),
-	foreign key(ticker_accion) references ACCION(ticker),
-  foreign key(id_cuenta_origen) references CUENTA(id),
-  foreign key(id_cuenta_destino) references CUENTA(id)
-	
+	nombre varchar(20),
+	primary key(id)
+);
+
+
+CREATE TABLE SECTOR(
+	id int,
+	nombre varchar(20),
+	primary key(id)
+);
+
+
+CREATE TABLE EMPRESA(
+	ticker int,
+	nombre varchar(30),
+	id_pais int,
+	capital_total int,
+	id_sector int,
+	IPO int,
+	primary key(ticker),
+	foreign key(id_pais) references PAIS(id),
+	foreign key(id_sector)references SECTOR(id)
+
+);
+
+
+CREATE TABLE ACCION(
+	ticker int,
+	valor_actual int NOT NULL,
+	variacion float,
+	volumen int,
+	primary key(ticker),
+	foreign key(ticker) references EMPRESA(ticker)
 );
 
 
@@ -31,52 +52,32 @@ CREATE TABLE DIVISA(
 
 CREATE TABLE CUENTA(
 	id int,
-	nombre varchar(30),
+	nombre varchar(30) NOT NULL,
 	pais varchar(20),
 	fecha_nacimiento date,
 	telefono int,
 	correo_cuenta varchar(40),
-	saldo int,
-	codigo_divisa varchar(15),
+	saldo int NOT NULL,
+	codigo_divisa varchar(15) NOT NULL,
 	primary key(id),
 	foreign key(codigo_divisa) references DIVISA(codigo),
 	foreign key(correo_cuenta) references CORREO(correo)
 );
 
 
-CREATE TABLE PAIS(
+CREATE TABLE MOVIMIENTO(
 	id int,
-	nombre varchar(20),
-	primary key(id)
-);
-
-
-CREATE TABLE INDUSTRIA(
-	id int,
-	nombre varchar(20),
-	primary key(id)
-);
-
-
-CREATE TABLE SECTOR(
-	id int,
-	nombre varchar(20),
-	id_industria int,
-	foreign key(id_industria) references INDUSTRIA(id)
-);
-
-
-CREATE TABLE EMPRESA(
-	ticker int,
-	nombre varchar(30),
-	id_pais int,
-	capital_total int,
-	id_industria int,
-	IPO int,
-	primary key(ticker),
-	foreign key(id_pais) references PAIS(id),
-	foreign key(id_industria)references INDUSTRIA(id)
-
+	cantidad int NOT NULL,
+	precio int NOT NULL,
+	fecha date,
+	divisa varchar(15),
+    ticker_accion int NOT NULL,
+    id_cuenta_origen int NOT NULL,
+    id_cuenta_destino int NOT NULL,
+	primary key(id),
+	foreign key(ticker_accion) references ACCION(ticker),
+    foreign key(id_cuenta_origen) references CUENTA(id),
+    foreign key(id_cuenta_destino) references CUENTA(id)
 );
 
 
@@ -85,28 +86,15 @@ CREATE TABLE TENER(
 	id int,
 	primary key(ticker,id),
 	foreign key(id) references CUENTA(id),
-	foreign key(ticker) references EMPRESA(ticker)
-);
-
-
-CREATE TABLE ACCION(
-	ticker int,
-	valor_actual int,
-	variacion float,
-	volumen int,
-	primary key(ticker),
-	foreign key(ticker) references EMPRESA(ticker)
+	foreign key(ticker) references ACCION(ticker)
 );
 
 
 CREATE TABLE VALOR_HISTORICO(
 	fecha date,
-	valor int,
-	variacion float,
+	valor int NOT NULL,
+	variacion float NOT NULL,
 	ticker int,
-	foreign key(ticker) references EMPRESA(ticker)
+	primary key(ticker, fecha),
+	foreign key(ticker) references ACCION(ticker)
 );
-
-
-
-
