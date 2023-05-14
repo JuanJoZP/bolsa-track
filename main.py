@@ -17,7 +17,7 @@ def cli(ctx):
 
         user = os.getenv("DB_USER")
         password = os.getenv("DB_PASS")
-        conn = psycopg2.connect(dbname="test", user=user, password=password)
+        conn = psycopg2.connect(dbname="bolsa-track", user=user, password=password)
 
         ctx.obj["user"] = user
         ctx.obj["password"] = password
