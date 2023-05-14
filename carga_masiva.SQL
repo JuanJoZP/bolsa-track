@@ -64,6 +64,6 @@ CREATE TABLE valor_historico(
 );
 
 --Carga Masiva--
-COPY cuenta FROM 'C:\cuenta.csv' delimiter ',' csv header;
-COPY accion FROM 'C:\accion.csv' delimiter ',' csv header;
-COPY empresa FROM 'C:\empresa.csv' delimiter ',' csv header;
+COPY cuenta FROM 'C:\datos_estaticos\cuenta.csv' delimiter ',' csv header;
+COPY accion FROM 'C:\datos_estaticos\accion.csv' delimiter ',' csv header;
+COPY empresa FROM 'C:\datos_estaticos\empresa.csv' delimiter ',' csv header;
