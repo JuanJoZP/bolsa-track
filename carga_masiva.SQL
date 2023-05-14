@@ -1,6 +1,5 @@
 --TABLAS--
 CREATE TABLE empresa(
-	id int,
 	ticker varchar(10),
 	nombre varchar,
 	pais varchar(20),
