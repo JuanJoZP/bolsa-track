@@ -12,7 +12,7 @@ def conectar(ctx, usuario, contraseña):
         return
 
     try:
-        conn = psycopg2.connect(dbname="test", user=usuario, password=contraseña)
+        conn = psycopg2.connect(dbname="bolsa-track", user=usuario, password=contraseña)
         cur = conn.cursor()
         cur.close()
         conn.close()
