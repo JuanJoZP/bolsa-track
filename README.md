@@ -12,3 +12,11 @@
 - Ejecutar `carga_masiva.sql` en la base de datos
 - Ejecutar en consola `python main.py conectar postgres CONTRASEÑA` (cambie "CONTRASEÑA" por la contraseña del pgAdmin)
 - Ejecutar en consola `python main.py consultar --help`
+
+## Ejemplo
+
+- Ejemplo de una consulta a la tabla divisa 
+![image](https://github.com/JuanJoZP/bolsa-track/assets/63169687/a352e8c9-13fc-4414-bb90-886e1713d831)
+
+- Ejemplo de una consulta con restriccion a la tabla divisa 
+![image](https://github.com/JuanJoZP/bolsa-track/assets/63169687/8d359539-413d-44a7-afe0-c93b9628a01c)
