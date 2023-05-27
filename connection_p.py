@@ -61,7 +61,7 @@ app.layout = html.Div(children=[
             ]
         ),html.Div(
             children=[
-                html.H1('Diagrama de Torta'),  # El H1 se centrará dentro del contenedor Div
+                html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Empresas grandes Acciones', figure = fig4),
             ]
         ),
