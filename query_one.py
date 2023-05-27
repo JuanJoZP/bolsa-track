@@ -11,3 +11,9 @@ def q_2():
     count(*)
     FROM empresa e
     group by(e.id_sector)"""
+
+def q_3():
+    return """select (select nombre from sector s where e.id_sector=s.id) as sector, sum(a.volumen)
+    from accion a 
+    inner join empresa e on e.ticker=a.ticker
+    group by sector"""

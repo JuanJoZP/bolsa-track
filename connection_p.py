@@ -14,7 +14,7 @@ class Connection:
     def openConnection(self):
         try:
             self.connection = psycopg2.connect(user = "postgres",
-                                               password = "123456789",
+                                               password = "1234",
                                                database = "bolsa-track",
                                                host = "localhost",
                                                port = "5432")
@@ -32,14 +32,18 @@ con = Connection()
 con.openConnection()
 query = pd.read_sql_query(sql.q_1(),con.connection)
 query_2= pd.read_sql_query(sql.q_2(),con.connection)
+query_3 = pd.read_sql_query(sql.q_3(),con.connection)
 con.closeConnection()
 
 
 query.columns = ["Blue chips", "Penny stocks"]
 query_2.columns = ["Sector", "Cantidad_empresas"]
+query_3.columns = ["Sector", "Volumen de acciones"]
 
-fig2 = go.Figure(data=go.Bar(x=query_2['Sector'], y=query_2['Cantidad_empresas']))
+
 fig = go.Figure(data=[go.Pie(labels=query.columns, values=query.values[0])])
+fig2 = go.Figure(data=go.Bar(x=query_2['Sector'], y=query_2['Cantidad_empresas']))
+fig3 = go.Figure(data=go.Bar(x=query_3['Sector'], y=query_3['Volumen de acciones']))
 
 
 app.layout = html.Div(children=[
@@ -56,6 +60,12 @@ app.layout = html.Div(children=[
             children=[
                 html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Sectores', figure = fig2),
+            ]
+        ),
+        html.Div(
+            children=[
+                html.H1('Diagrama de burbujas'),  # El H1 se centrará dentro del contenedor Div
+                dcc.Graph(id = 'Variacion', figure = fig3),
             ]
         ),
     ]),
