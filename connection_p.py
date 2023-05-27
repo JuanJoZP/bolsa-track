@@ -32,14 +32,16 @@ con = Connection()
 con.openConnection()
 query = pd.read_sql_query(sql.q_1(),con.connection)
 query_2= pd.read_sql_query(sql.q_2(),con.connection)
+query_4= pd.read_sql_query(sql.q_4(),con.connection)
 con.closeConnection()
 
 
 query.columns = ["Blue chips", "Penny stocks"]
 query_2.columns = ["Sector", "Cantidad_empresas"]
-
+query_4.columns = ["Sector","Cantidad_empresas"]
 fig2 = go.Figure(data=go.Bar(x=query_2['Sector'], y=query_2['Cantidad_empresas']))
 fig = go.Figure(data=[go.Pie(labels=query.columns, values=query.values[0])])
+fig4 = go.Figure(data=go.Bar(x=query_4['Sector'], y=query_4['Cantidad_empresas']))
 
 
 app.layout = html.Div(children=[
@@ -57,9 +59,19 @@ app.layout = html.Div(children=[
                 html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Sectores', figure = fig2),
             ]
+        ),html.Div(
+            children=[
+                html.H1('Diagrama de Torta'),  # El H1 se centrará dentro del contenedor Div
+                dcc.Graph(id = 'Empresas grandes Acciones', figure = fig4),
+            ]
         ),
+        
     ]),
 ])
+
+
+if __name__ == '__main__':
+   app.run_server(debug=True)
 
 
 if __name__ == '__main__':
