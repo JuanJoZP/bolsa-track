@@ -33,17 +33,19 @@ con.openConnection()
 query = pd.read_sql_query(sql.q_1(),con.connection)
 query_2= pd.read_sql_query(sql.q_2(),con.connection)
 query_3 = pd.read_sql_query(sql.q_3(),con.connection)
+query_4= pd.read_sql_query(sql.q_4(),con.connection)
 con.closeConnection()
 
 
 query.columns = ["Blue chips", "Penny stocks"]
 query_2.columns = ["Sector", "Cantidad_empresas"]
 query_3.columns = ["Sector", "Volumen de acciones"]
+query_4.columns = ["Sector","Cantidad_empresas"]
 
-
-fig = go.Figure(data=[go.Pie(labels=query.columns, values=query.values[0])])
+fig1 = go.Figure(data=[go.Pie(labels=query.columns, values=query.values[0])])
 fig2 = go.Figure(data=go.Bar(x=query_2['Sector'], y=query_2['Cantidad_empresas']))
-fig3 = go.Figure(data=go.Bar(x=query_3['Sector'], y=query_3['Volumen de acciones']))
+fig3 = go.Figure(data=go.Bar(x=query_4['Sector'], y=query_4['Cantidad_empresas']))
+fig4 = go.Figure(data=go.Bar(x=query_3['Sector'], y=query_3['Volumen de acciones']))
 
 
 app.layout = html.Div(children=[
@@ -53,7 +55,7 @@ app.layout = html.Div(children=[
         html.Div(
             children=[
                 html.H1('Diagrama de Torta'),  # El H1 se centrará dentro del contenedor Div
-                dcc.Graph(id = 'Acciones', figure = fig),
+                dcc.Graph(id = 'Acciones', figure = fig1),
             ]
         ),
         html.Div(
@@ -61,15 +63,25 @@ app.layout = html.Div(children=[
                 html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Sectores', figure = fig2),
             ]
+        ),html.Div(
+            children=[
+                html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
+                dcc.Graph(id = 'Empresas grandes Acciones', figure = fig3),
+            ]
         ),
         html.Div(
             children=[
                 html.H1('Diagrama de burbujas'),  # El H1 se centrará dentro del contenedor Div
-                dcc.Graph(id = 'Variacion', figure = fig3),
+                dcc.Graph(id = 'Variacion', figure = fig4),
             ]
         ),
+        
     ]),
 ])
+
+
+if __name__ == '__main__':
+   app.run_server(debug=True)
 
 
 if __name__ == '__main__':
