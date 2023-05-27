@@ -54,24 +54,24 @@ app.layout = html.Div(children=[
     children=[
         html.Div(
             children=[
-                html.H1('Diagrama de Torta'),  # El H1 se centrará dentro del contenedor Div
+                html.H3('Tipo de Accion'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Acciones', figure = fig1),
             ]
         ),
         html.Div(
             children=[
-                html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
+                html.H3('Empresas por sector'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Sectores', figure = fig2),
             ]
         ),html.Div(
             children=[
-                html.H1('Diagrama de barras'),  # El H1 se centrará dentro del contenedor Div
+                html.H3('Acciones por mas de 1.000 dolares'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Empresas grandes Acciones', figure = fig3),
             ]
         ),
         html.Div(
             children=[
-                html.H1('Diagrama de burbujas'),  # El H1 se centrará dentro del contenedor Div
+                html.H3('Volumen de acciones por sector'),  # El H1 se centrará dentro del contenedor Div
                 dcc.Graph(id = 'Variacion', figure = fig4),
             ]
         ),
